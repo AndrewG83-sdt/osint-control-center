@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="OSINT Control Center: workspace locale-first per correlare identita digitali, immagini, casi e query OSINT gratuite."
+    />
+    <meta name="theme-color" content="#08131e" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <title>OSINT Control Center</title>
+    <style>
+      :root {
+        color-scheme: dark;
+        font-family: "IBM Plex Sans", sans-serif;
+        background: #08131e;
+        color: #f4f7fb;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        background:
+          radial-gradient(circle at top, rgba(31, 84, 125, 0.28), transparent 42%),
+          linear-gradient(180deg, #07111a 0%, #08131e 55%, #050b11 100%);
+        color: inherit;
+      }
+
+      #bootStatus {
+        position: fixed;
+        inset: 0;
+        display: grid;
+        place-items: center;
+        z-index: 10;
+        padding: 24px;
+        background: rgba(5, 11, 17, 0.76);
+        backdrop-filter: blur(14px);
+      }
+
+      .boot-card {
+        width: min(440px, 100%);
+        padding: 28px;
+        border: 1px solid rgba(117, 151, 183, 0.2);
+        border-radius: 24px;
+        background: rgba(8, 19, 30, 0.92);
+        box-shadow: 0 20px 70px rgba(2, 8, 12, 0.45);
+      }
+
+      .boot-eyebrow {
+        margin: 0 0 10px;
+        font-size: 0.76rem;
+        text-transform: uppercase;
+        letter-spacing: 0.16em;
+        color: #6bb2ff;
+      }
+
+      .boot-title {
+        margin: 0;
+        font-family: "Space Grotesk", sans-serif;
+        font-size: 1.9rem;
+      }
+
+      .boot-text {
+        margin: 14px 0 0;
+        color: rgba(232, 241, 248, 0.76);
+        line-height: 1.6;
+      }
+
+      .boot-bar {
+        margin-top: 22px;
+        height: 8px;
+        border-radius: 999px;
+        overflow: hidden;
+        background: rgba(117, 151, 183, 0.14);
+      }
+
+      .boot-bar > span {
+        display: block;
+        width: 38%;
+        height: 100%;
+        border-radius: inherit;
+        background: linear-gradient(90deg, #29d3d8 0%, #6bb2ff 100%);
+        animation: boot-progress 1.2s ease-in-out infinite alternate;
+      }
+
+      @keyframes boot-progress {
+        from {
+          transform: translateX(-15%);
+        }
+
+        to {
+          transform: translateX(135%);
+        }
+      }
+
+      #bootMount:empty {
+        display: none;
+      }
+    </style>
+    <script defer src="./boot.js"></script>
+  </head>
+  <body>
+    <div id="bootStatus">
+      <div class="boot-card">
+        <p class="boot-eyebrow">OSINT Research Studio</p>
+        <h1 class="boot-title">OSINT Control Center</h1>
+        <p class="boot-text" id="bootStatusText">
+          Preparazione del workspace investigativo e caricamento dei moduli locali.
+        </p>
+        <div class="boot-bar" aria-hidden="true"><span></span></div>
+      </div>
+    </div>
+    <div id="bootMount"></div>
+  </body>
+</html>
