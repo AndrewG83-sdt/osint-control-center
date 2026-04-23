@@ -1,45 +1,30 @@
 # OSINT Control Center
 
-Web app locale-first, gratuita e installabile, pensata come base professionale per gestire ricerche OSINT con un'esperienza piu vicina a una investigation board che a un semplice form.
+Web app locale-first, gratuita e installabile, pensata come base professionale per gestire ricerche OSINT con un'esperienza vicina a una investigation board.
 
-## Cosa fa ora
+## Funzioni principali
 
-- raccoglie input multipli: nome, cognome, username, email, telefono, luogo, immagine e note;
-- salva i casi in `IndexedDB`, non piu solo in `localStorage`;
-- introduce un vero archivio casi con `stato`, `priorita`, `tag`, data creazione e ultimo aggiornamento;
-- costruisce un grafo investigativo in stile entity map;
-- permette di estendere il grafo con nodi manuali e relazioni a confidenza variabile;
-- permette di trascinare i nodi del grafo e salvare il layout del caso;
-- organizza il grafo in cluster visivi con layout automatico avanzato per identita, footprint e segnali manuali;
-- genera pack di query OSINT gratuite verso motori di ricerca, social, mappe e reverse image search;
-- consente di salvare query e profili social direttamente come evidenze collegate al grafo;
-- aggiunge ricerche correlate per immagini incrociando foto con nome, username e luogo;
-- estrae OCR locale quando il browser supporta `TextDetector`;
-- legge metadati EXIF dai file `JPEG/JPG` direttamente nel browser;
-- aggiunge `Geo Intelligence` con mappe, GPS EXIF, street-level e pivot geografici;
-- aggiunge `Social Intelligence v2` con segnali, scoring piu ricco e next step per piattaforma;
-- separa l'interfaccia in viste dedicate: `Dashboard`, `Social Intelligence`, `Image Intelligence`, `Reports`, `Cases`;
-- integra `Evidence board` e `Timeline` per registrare fonti, confidenza, verifiche ed eventi del caso;
-- integra `Case Tasks`, ricerca globale e filtri nell'archivio casi;
-- esporta JSON, report Markdown e PDF stampabile;
-- funziona come PWA e puo essere installata dal browser.
+- Raccolta input: nome, cognome, username, email, telefono, luogo, immagine e note.
+- Archivio casi persistente in `IndexedDB` con stato, priorita, tag, data creazione e ultimo aggiornamento.
+- Grafo investigativo editabile con nodi manuali, relazioni, confidenza, drag-and-drop e cluster visivi.
+- Query pack OSINT gratuiti verso motori di ricerca, social, mappe e reverse image search.
+- Social Intelligence per Facebook, Instagram e TikTok con scoring euristico e salvataggio profili come evidenze.
+- Image Intelligence con preview sicura, OCR browser-side quando disponibile, EXIF JPEG/JPG e Geo Intelligence.
+- Evidence board, timeline investigativa, checklist operativa e ricerca globale tra i casi.
+- Export JSON, report Markdown e PDF stampabile.
+- PWA installabile dal browser quando servita da `localhost` o HTTPS.
 
 ## Stack
 
-- `HTML + CSS + JavaScript` puro
-- architettura spezzata in moduli browser-friendly
-- `IndexedDB` per persistenza casi
-- OCR nativo browser-side quando disponibile
-- parser EXIF locale per JPEG/JPG
-- nessun framework obbligatorio
-- nessun backend richiesto per la versione attuale
-- nessun costo API per l'uso base
+- `HTML + CSS + JavaScript` puro.
+- Nessun framework obbligatorio.
+- Nessun backend richiesto per la versione attuale.
+- Nessuna API a pagamento per l'uso base.
+- Persistenza locale tramite `IndexedDB`.
 
 ## Avvio rapido
 
-Puoi aprire `index.html` direttamente, ma per la modalita installabile/PWA conviene usare un piccolo server locale.
-
-### Opzione 1: Python
+Puoi aprire `index.html` direttamente, ma per la modalita PWA/installabile conviene servire la cartella con un piccolo server locale.
 
 ```powershell
 py -m http.server 8080
@@ -47,46 +32,30 @@ py -m http.server 8080
 
 Poi apri:
 
-- `http://localhost:8080`
+```text
+http://localhost:8080
+```
 
-### Opzione 2: VS Code / Live Server
+## Struttura GitHub
 
-Se usi VS Code, puoi anche servire la cartella con un'estensione come Live Server.
+Questa pubblicazione usa una shell leggera che ricompone i sorgenti lato browser:
 
-## Struttura progetto
+- [index.html](./index.html): shell di avvio GitHub-ready.
+- [boot.js](./boot.js): loader che ricompone markup, CSS e moduli applicativi.
+- [src/](./src): sorgenti applicativi suddivisi in blocchi.
+- [js/config.js](./js/config.js), [js/utils.js](./js/utils.js), [js/storage.js](./js/storage.js): moduli core piccoli caricati direttamente.
+- [manifest.webmanifest](./manifest.webmanifest), [sw.js](./sw.js), [favicon.svg](./favicon.svg): asset PWA.
 
-- [index.html](./index.html)
-- [styles.css](./styles.css)
-- [app.js](./app.js)
-- [js/config.js](./js/config.js)
-- [js/utils.js](./js/utils.js)
-- [js/storage.js](./js/storage.js)
-- [js/searches.js](./js/searches.js)
-- [js/image.js](./js/image.js)
-- [js/graph.js](./js/graph.js)
-- [js/exports.js](./js/exports.js)
-- [manifest.webmanifest](./manifest.webmanifest)
-- [sw.js](./sw.js)
+## Nota etica e legale
 
-## Evoluzione della base
+Questo progetto e pensato per uso legittimo su fonti pubbliche, ricerca difensiva, analisi autorizzate, giornalismo, threat intelligence e gestione di casi con consenso o base legale adeguata. Non e pensato per stalking, doxxing, molestie, accesso non autorizzato o raccolta abusiva di dati personali.
 
-Questa versione e piu matura rispetto alla base iniziale:
+Quando apri query verso motori di ricerca, social o mappe, i termini del caso vengono inviati a servizi terzi per design. Evita di inserire dati reali se non hai una base legale o operativa chiara.
 
-- il salvataggio casi e persistente e scalabile;
-- l'app puo gestire piu investigazioni nello stesso archivio;
-- il codice e stato separato per responsabilita;
-- la UI e pronta a crescere verso workflow piu vicini a tool OSINT professionali.
+## Roadmap consigliata
 
-## Evoluzione consigliata
-
-Se vuoi trasformarla ancora in una piattaforma OSINT piu potente nelle prossime iterazioni, il percorso migliore e:
-
-1. arricchire il grafo con cluster dinamici, pinning mirato e connessioni dirette a evidenze e timeline;
-2. aggiungere OCR, EXIF e annotazioni visuali manuali nell'area `Image Intelligence`;
-3. arricchire `Social Intelligence` con confronto bio, avatar, username simili e scoring piu sofisticato;
-4. integrare un backend modulare per connettori OSINT opzionali;
-5. collegare fonti esterne solo quando rispettano policy, rate limit e requisiti legali del tuo contesto.
-
-## Nota importante
-
-Questa base e costruita per lavorare su fonti pubbliche e casi legittimi. Alcuni servizi esterni gratuiti possono cambiare policy, limitazioni o disponibilita nel tempo.
+1. Backup e restore completo del vault IndexedDB.
+2. Import/export casi multipli.
+3. Connettori OSINT opzionali e modulari, solo per fonti compatibili con policy e rate limit.
+4. Annotazioni visuali manuali nell'area Image Intelligence.
+5. Report template piu avanzati per executive summary, evidenze validate e appendice fonti.
