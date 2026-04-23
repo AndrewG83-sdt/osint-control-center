@@ -1,0 +1,18 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Local runtime files
+*.log
+*.tmp
+.env
+.env.*
+
+# Case exports and local evidence artifacts
+exports/
+reports/
+*.pdf
+*.json
+*.md.bak
