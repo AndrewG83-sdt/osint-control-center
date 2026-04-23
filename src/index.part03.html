@@ -1,0 +1,189 @@
+                   <label>
+                      Fonte
+                      <input id="evidenceSource" name="source" type="text" placeholder="Instagram / articolo / mappa" />
+                    </label>
+                  </div>
+                  <label>
+                    URL o riferimento
+                    <input id="evidenceUrl" name="url" type="url" placeholder="https://..." />
+                  </label>
+                  <label>
+                    Note evidenza
+                    <textarea id="evidenceNotes" name="notes" rows="4" placeholder="Perche questa evidenza e rilevante?"></textarea>
+                  </label>
+                  <div class="selection-block">
+                    <div class="panel-heading compact">
+                      <div>
+                        <p class="eyebrow">Graph Links</p>
+                        <h3>Nodi collegati</h3>
+                      </div>
+                    </div>
+                    <div id="evidenceLinkedNodes" class="selection-grid"></div>
+                  </div>
+                  <div class="selection-block">
+                    <div class="panel-heading compact">
+                      <div>
+                        <p class="eyebrow">Relation Links</p>
+                        <h3>Relazioni collegate</h3>
+                      </div>
+                    </div>
+                    <div id="evidenceLinkedRelations" class="selection-grid"></div>
+                  </div>
+                  <div class="form-actions">
+                    <button class="button button-primary small" type="submit">Aggiungi evidenza</button>
+                  </div>
+                </form>
+                <div id="evidenceBoard" class="saved-cases"></div>
+              </article>
+
+              <article class="panel intel-panel">
+                <div class="panel-heading">
+                  <div>
+                    <p class="eyebrow">Timeline</p>
+                    <h3>Cronologia investigativa</h3>
+                  </div>
+                  <span class="status-pill" id="timelineCount">0 eventi</span>
+                </div>
+                <form id="timelineForm" class="intel-form compact-form">
+                  <label>
+                    Titolo evento
+                    <input id="timelineTitle" name="title" type="text" placeholder="Individuato profilo compatibile" required />
+                  </label>
+                  <div class="field-grid">
+                    <label>
+                      Data
+                      <input id="timelineDate" name="date" type="date" />
+                    </label>
+                    <label>
+                      Ora
+                      <input id="timelineTime" name="time" type="time" />
+                    </label>
+                  </div>
+                  <label>
+                    Categoria
+                    <select id="timelineCategory" name="category">
+                      <option value="finding">Finding</option>
+                      <option value="activity">Attivita</option>
+                      <option value="validation">Verifica</option>
+                      <option value="alert">Alert</option>
+                    </select>
+                  </label>
+                  <label>
+                    Descrizione evento
+                    <textarea id="timelineDescription" name="description" rows="4" placeholder="Che cosa e successo in questa fase del caso?"></textarea>
+                  </label>
+                  <div class="form-actions">
+                    <button class="button button-primary small" type="submit">Aggiungi evento</button>
+                  </div>
+                </form>
+                <div id="timelineBoard" class="saved-cases"></div>
+              </article>
+            </section>
+          </section>
+
+          <section id="casesView" class="view-panel">
+            <section class="insight-grid">
+              <article class="panel intel-panel">
+                <div class="panel-heading">
+                  <div>
+                    <p class="eyebrow">Case Vault</p>
+                    <h3>Archivio completo</h3>
+                  </div>
+                  <span class="status-pill" id="caseVaultCount">0 casi</span>
+                </div>
+                <div class="case-filter-bar">
+                  <input id="caseSearchInput" type="search" placeholder="Cerca per nome, username, email, tag..." />
+                  <select id="caseStatusFilter">
+                    <option value="all">Tutti gli stati</option>
+                    <option value="active">Attivo</option>
+                    <option value="monitoring">Monitoraggio</option>
+                    <option value="validated">Validato</option>
+                    <option value="archived">Archiviato</option>
+                  </select>
+                  <select id="casePriorityFilter">
+                    <option value="all">Tutte le priorita</option>
+                    <option value="low">Bassa</option>
+                    <option value="medium">Media</option>
+                    <option value="high">Alta</option>
+                    <option value="critical">Critica</option>
+                  </select>
+                </div>
+                <div id="caseArchive" class="saved-cases"></div>
+              </article>
+
+              <article class="panel intel-panel">
+                <div class="panel-heading">
+                  <div>
+                    <p class="eyebrow">Current Dossier</p>
+                    <h3>Sintesi caso corrente</h3>
+                  </div>
+                  <span class="status-pill">Live</span>
+                </div>
+                <div id="caseDetail" class="saved-cases"></div>
+              </article>
+
+              <article class="panel intel-panel">
+                <div class="panel-heading">
+                  <div>
+                    <p class="eyebrow">Case Tasks</p>
+                    <h3>Checklist operativa</h3>
+                  </div>
+                  <span class="status-pill" id="taskCount">0 task</span>
+                </div>
+                <form id="taskForm" class="intel-form compact-form">
+                  <label>
+                    Titolo task
+                    <input name="title" type="text" placeholder="Verificare profilo Instagram sospetto" required />
+                  </label>
+                  <div class="field-grid">
+                    <label>
+                      Stato
+                      <select name="status">
+                        <option value="todo" selected>Da fare</option>
+                        <option value="in-progress">In corso</option>
+                        <option value="done">Completata</option>
+                        <option value="blocked">Bloccata</option>
+                      </select>
+                    </label>
+                    <label>
+                      Priorita
+                      <select name="priority">
+                        <option value="low">Bassa</option>
+                        <option value="medium" selected>Media</option>
+                        <option value="high">Alta</option>
+                        <option value="critical">Critica</option>
+                      </select>
+                    </label>
+                  </div>
+                  <label>
+                    Scadenza
+                    <input name="dueDate" type="date" />
+                  </label>
+                  <label>
+                    Note task
+                    <textarea name="notes" rows="4" placeholder="Cosa va controllato, con quali fonti e con che priorita?"></textarea>
+                  </label>
+                  <div class="form-actions">
+                    <button class="button button-primary small" type="submit">Aggiungi task</button>
+                  </div>
+                </form>
+                <div id="taskBoard" class="saved-cases"></div>
+              </article>
+            </section>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <div id="toast" class="toast" aria-live="polite"></div>
+
+    <script src="./js/config.js"></script>
+    <script src="./js/utils.js"></script>
+    <script src="./js/storage.js"></script>
+    <script src="./js/searches.js"></script>
+    <script src="./js/image.js"></script>
+    <script src="./js/graph.js"></script>
+    <script src="./js/exports.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
