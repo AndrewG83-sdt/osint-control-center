@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="OSINT Control Center: workspace locale-first per correlare identita digitali, immagini, casi e query OSINT gratuite."
+    />
+    <meta name="theme-color" content="#08131e" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="stylesheet" href="./styles.css" />
+    <title>OSINT Control Center</title>
+  </head>
+  <body>
+    <div class="background-glow"></div>
+    <div class="background-grid"></div>
+
+    <div class="app-shell">
+      <header class="topbar panel">
+        <div>
+          <p class="eyebrow">OSINT Research Studio</p>
+          <h1>OSINT Control Center</h1>
+        </div>
+
+        <div class="topbar-actions">
+          <button class="button button-ghost" id="newCaseButton" type="button">Nuovo caso</button>
+          <button class="button button-ghost" id="saveCaseButton" type="button">Salva caso</button>
+          <button class="button button-ghost" id="exportJsonButton" type="button">Esporta JSON</button>
+          <button class="button button-ghost" id="exportReportButton" type="button">Esporta report</button>
+          <button class="button button-primary" id="exportPdfButton" type="button">Esporta PDF</button>
+          <button class="button button-secondary" id="installButton" type="button">Installa app</button>
+        </div>
+      </header>
+
+      <nav class="view-switcher panel" id="viewSwitcher">
+        <button class="view-tab active" type="button" data-view="dashboard">Dashboard</button>
+        <button class="view-tab" type="button" data-view="social">Social Intelligence</button>
+        <button class="view-tab" type="button" data-view="images">Image Intelligence</button>
+        <button class="view-tab" type="button" data-view="reports">Reports</button>
+        <button class="view-tab" type="button" data-view="cases">Cases</button>
+      </nav>
+
+      <div class="workspace">
+        <aside class="sidebar panel">
+          <div class="panel-heading">
+            <div>
+              <p class="eyebrow">Case Builder</p>
+              <h2>Dati del soggetto</h2>
+            </div>
+            <span class="status-pill">IndexedDB</span>
+          </div>
+
+          <p class="sidebar-note">
+            Ogni caso ora viene mantenuto in archivio persistente. Inserisci piu segnali possibile
+            per ottenere query piu precise, correlazioni sociali e contesto visivo.
+          </p>
+
+          <form id="intelForm" class="intel-form">
+            <label>
+              Nome caso
+              <input data-field="caseName" id="caseName" type="text" placeholder="Caso Rossi / alias ShadowFox" />
+            </label>
+
+            <div class="field-grid">
+              <label>
+                Stato
+                <select data-field="status" id="status">
+                  <option value="active">Attivo</option>
+                  <option value="monitoring">Monitoraggio</option>
+                  <option value="validated">Validato</option>
+                  <option value="archived">Archiviato</option>
+                </select>
+              </label>
+
+              <label>
+                Priorita
+                <select data-field="priority" id="priority">
+                  <option value="low">Bassa</option>
+                  <option value="medium">Media</option>
+                  <option value="high">Alta</option>
+                  <option value="critical">Critica</option>
+                </select>
+              </label>
+            </div>
+
+            <label>
+              Tag caso
+              <input data-field="tags" id="tags" type="text" placeholder="social, monitoraggio, milano" />
+            </label>
+
+            <div class="field-grid">
+              <label>
+                Nome
+                <input data-field="name" id="name" type="text" placeholder="Mario" />
+              </label>
+
+              <label>
+                Cognome
+                <input data-field="surname" id="surname" type="text" placeholder="Rossi" />
+              </label>
+            </div>
+
+            <label>
+              Username
+              <input data-field="username" id="username" type="text" placeholder="shadowfox89" />
+            </label>
+
+            <div class="field-grid">
+              <label>
+                Email
+                <input data-field="email" id="email" type="email" placeholder="nome@dominio.com" />
+              </label>
+
+              <label>
+                Telefono
+                <input data-field="phone" id="phone" type="tel" placeholder="+39 333 123 4567" />
+              </label>
+            </div>
+
+            <label>
+              Luogo
+              <input
+                data-field="location"
+                id="location"
+                type="text"
+                placeholder="Milano, Italia / Roma / zona geografica"
+              />
+            </label>
+
+            <label class="file-field">
+              Immagine
+              <input id="imageInput" type="file" accept="image/jpeg,image/png,image/webp,image/gif" />
+              <span class="file-caption">Carica un volto, un luogo o uno screenshot per attivare pivots visuali.</span>
+            </label>
+
+            <label>
+              Note operative
+              <textarea
+                data-field="notes"
+                id="notes"
+                rows="7"
+                placeholder="Obiettivo del caso, ipotesi iniziali, indicatori, contesto operativo..."
+              ></textarea>
+            </label>
+          </form>
+
+          <div class="sidebar-footer">
+            <div class="legal-card">
+              <h3>Case Intelligence</h3>
+              <p>
+                La nuova base usa un archivio persistente nel browser e una struttura pronta per
+                casi multipli, reportistica e moduli OSINT piu avanzati.
+              </p>
+            </div>
+          </div>
+        </aside>
+
+        <main class="main-area">
+          <section class="hero panel">
+            <div class="hero-copy">
+              <p class="eyebrow">Investigation Dashboard</p>
+              <h2 id="subjectLabel">Nessun target definito</h2>
+              <p id="caseSummary" class="hero-summary">
+                Inizia inserendo almeno un identificatore per generare grafo, query pack e correlazioni.
+              </p>
+              <div class="hero-chips case-meta-chips" id="caseMetaChips"></div>
+            </div>
+
+            <div class="hero-metrics">
+              <div class="score-card">
+                <span>Accuratezza stimata</span>
+                <strong id="scoreValue">0%</strong>
+                <div class="score-bar">
+                  <div id="scoreFill" class="score-fill"></div>
+                </div>
+              </div>
+
+              <div class="metric-stack" id="metricCards"></div>
+              <div class="hero-chips" id="coverageChips"></div>
+            </div>
+          </section>
+
+          <section id="dashboardView" class="view-panel active">
+            <section class="board-grid">
+              <article class="panel graph-panel">
+                <div class="panel-heading">
+                  <div>
+                    <p class="eyebrow">Entity Map</p>
+                    <h3>Grafo investigativo</h3>
+                  </div>
+                  <div class="status-cluster">
+                    <button class="button button-ghost small" id="resetGraphLayoutButton" type="button">
+                      Reset layout
+                    </button>
+                    <button class="button button-ghost small" id="clearFocusButton" type="button">
+                      Mostra tutto
+                    </button>
+                  </div>
+                </div>
+
+                  <p class="panel-copy">
+                    Il layout raggruppa identita, footprint digitale e segnali manuali in cluster
+                    visivi. Seleziona un nodo per filtrare le query correlate e concentrarti su una
+                    singola pista.
+                  </p>
+                <p class="saved-case-meta" id="graphDragHint">
+                  Puoi trascinare i nodi del grafo per organizzare visivamente la mappa.
+                </p>
+
+                <svg id="graphCanvas" class="graph-canvas" viewBox="0 0 920 460" role="img" aria-label="Mappa delle entita OSINT"></svg>
+              </article>
+
+              <article class="panel query-panel">
+                <div class="panel-heading">
+                  <div>
+                    <p class="eyebrow">Free Query Packs</p>
+                    <h3>Pack OSINT generati</h3>
+                  </div>
+                  <span class="status-pill" id="queryCount">0 query</span>
+                </div>
+
+                <p class="panel-copy">
+                  Query gratuite e link pronti per motori di ricerca, social, mappe e correlazione
+                  tra identita.
+                </p>
+
+                <div id="activeFocusBanner" class="focus-banner hidden"></div>
+                <div id="queryPacks" class="query-packs"></div>
+              </article>
+
+              <article class="panel intel-panel graph-studio-panel">
+                <div class="panel-heading">
+                  <div>
+                    <p class="eyebrow">Graph Studio</p>
+                    <h3>Nodi e relazioni manuali</h3>
+                  </div>
+                  <div class="status-cluster">
+                    <span class="status-pill" id="graphEntityCount">0 nodi</span>
+                    <span class="status-pill" id="graphRelationCount">0 relazioni</span>
+                  </div>
+                </div>
+
+                <p class="panel-copy">
+                  Aggiungi alias, account, aziende, documenti, luoghi o note manuali e collegali ai
+                  nodi del caso con relazioni e confidenza dedicata.
+                </p>
+
+                <div class="graph-studio-grid">
+                  <form id="graphEntityForm" class="intel-form compact-form">
+                    <input id="graphEntityId" name="entityId" type="hidden" />
+                    <label>
+                      Tipo nodo
+                      <select id="graphEntityType" name="type">
+                        <option value="alias">Alias</option>
+                        <option value="social">Account social</option>
+                        <option value="organization">Organizzazione</option>
+                        <option value="location">Luogo</option>
+                        <option value="document">Documento</option>
+                        <option value="contact">Contatto</option>
+                        <option value="note">Nota</option>
+                      </select>
+                    </label>
+                    <label>
+                      Etichetta nodo
+                      <input id="graphEntityLabel" name="label" type="text" placeholder="Alias ShadowFox" required />
+                    </label>
+                    <div class="field-grid">
+                      <label>
+                        Valore
+                        <input id="graphEntityValue" name="value" type="text" placeholder="@shadowfox89 / id / riferimento" />
+                      </label>
+                      <label>
+                        Confidenza
+                        <select id="graphEntityConfidence" name="confidence">
+                          <option value="low">Bassa</option>
+                          <option value="medium" selected>Media</option>
+                          <option value="high">Alta</option>
+                        </select>
