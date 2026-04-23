@@ -24,7 +24,7 @@ Web app locale-first, gratuita e installabile, pensata come base professionale p
 
 ## Avvio rapido
 
-Puoi aprire `index.html` direttamente, ma per la modalita PWA/installabile conviene servire la cartella con un piccolo server locale.
+Questa versione GitHub ricompone i sorgenti con `boot.js`, quindi va servita da `localhost` o HTTPS. Evita `file://`, perche il browser puo bloccare i `fetch` locali dei blocchi sorgente.
 
 ```powershell
 py -m http.server 8080
