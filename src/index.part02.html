@@ -1,0 +1,271 @@
+
+                      </label>
+                    </div>
+                    <label>
+                      Note nodo
+                      <textarea id="graphEntityNotes" name="notes" rows="4" placeholder="Perche questo nodo e rilevante nel caso?"></textarea>
+                    </label>
+                    <div class="form-actions">
+                      <button class="button button-primary small" id="graphEntitySubmitButton" type="submit">Salva nodo</button>
+                      <button class="button button-ghost small" id="resetGraphEntityButton" type="button">Reset</button>
+                    </div>
+                  </form>
+
+                  <form id="graphRelationForm" class="intel-form compact-form">
+                    <input id="graphRelationId" name="relationId" type="hidden" />
+                    <label>
+                      Nodo sorgente
+                      <select id="graphSourceNode" name="sourceId"></select>
+                    </label>
+                    <label>
+                      Relazione
+                      <input id="graphRelationLabel" name="label" type="text" placeholder="alias di / usa / collegato a" required />
+                    </label>
+                    <div class="field-grid">
+                      <label>
+                        Nodo destinazione
+                        <select id="graphTargetNode" name="targetId"></select>
+                      </label>
+                      <label>
+                        Confidenza
+                        <select id="graphRelationConfidence" name="confidence">
+                          <option value="low">Bassa</option>
+                          <option value="medium" selected>Media</option>
+                          <option value="high">Alta</option>
+                        </select>
+                      </label>
+                    </div>
+                    <label>
+                      Note relazione
+                      <textarea id="graphRelationNotes" name="notes" rows="4" placeholder="Che tipo di collegamento hai verificato?"></textarea>
+                    </label>
+                    <div class="form-actions">
+                      <button class="button button-primary small" id="graphRelationSubmitButton" type="submit">Salva relazione</button>
+                      <button class="button button-ghost small" id="resetGraphRelationButton" type="button">Reset</button>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="graph-ledger">
+                  <div class="graph-ledger-section">
+                    <div class="panel-heading compact">
+                      <div>
+                        <p class="eyebrow">Manual Nodes</p>
+                        <h3>Entita aggiunte</h3>
+                      </div>
+                    </div>
+                    <div id="graphEntitiesList" class="saved-cases"></div>
+                  </div>
+
+                  <div class="graph-ledger-section">
+                    <div class="panel-heading compact">
+                      <div>
+                        <p class="eyebrow">Manual Relations</p>
+                        <h3>Collegamenti dichiarati</h3>
+                      </div>
+                    </div>
+                    <div id="graphRelationsList" class="saved-cases"></div>
+                  </div>
+                </div>
+              </article>
+
+              <article class="panel intel-panel">
+                <div class="panel-heading">
+                  <div>
+                    <p class="eyebrow">Analyst Brief</p>
+                    <h3>Prossime mosse</h3>
+                  </div>
+                  <span class="status-pill">Smart hints</span>
+                </div>
+
+                <div id="recommendations" class="recommendations"></div>
+              </article>
+
+              <article class="panel intel-panel">
+                <div class="panel-heading compact">
+                  <div>
+                    <p class="eyebrow">Case Archive</p>
+                    <h3>Ultimi casi</h3>
+                  </div>
+                  <span class="status-pill" id="caseCountLabel">0 casi</span>
+                </div>
+                <div id="dashboardCaseArchive" class="saved-cases"></div>
+              </article>
+            </section>
+          </section>
+
+          <section id="socialView" class="view-panel">
+            <section class="insight-grid">
+              <article class="panel social-panel">
+                <div class="panel-heading">
+                  <div>
+                    <p class="eyebrow">Social Intelligence</p>
+                    <h3>Profili e correlazione</h3>
+                  </div>
+                  <span class="status-pill">Facebook / Instagram / TikTok</span>
+                </div>
+                <p class="panel-copy">
+                  Vista dedicata per confrontare handle, profili diretti, query indicizzate e livello
+                  di correlazione social.
+                </p>
+                <div id="socialProfiles" class="social-grid"></div>
+              </article>
+
+              <article class="panel query-panel">
+                <div class="panel-heading">
+                  <div>
+                    <p class="eyebrow">Social Queries</p>
+                    <h3>Piste dedicate ai social</h3>
+                  </div>
+                  <span class="status-pill" id="socialQueryCount">0 query</span>
+                </div>
+                <div id="socialSearches" class="query-packs"></div>
+              </article>
+            </section>
+          </section>
+
+          <section id="imagesView" class="view-panel">
+            <section class="insight-grid">
+              <article class="panel media-panel">
+                <div class="panel-heading">
+                  <div>
+                    <p class="eyebrow">Visual Pivot</p>
+                    <h3>Immagine e meta</h3>
+                  </div>
+                  <span class="status-pill" id="imageStatus">Nessuna immagine</span>
+                </div>
+
+                <div id="imagePreview" class="image-preview empty">
+                  <p>Carica un'immagine per vedere anteprima e trigger per reverse image search.</p>
+                </div>
+
+                <div id="imageMeta" class="image-meta"></div>
+              </article>
+
+              <article class="panel intel-panel">
+                <div class="panel-heading">
+                  <div>
+                    <p class="eyebrow">Image Intelligence</p>
+                    <h3>Check visuale e correlazioni</h3>
+                  </div>
+                  <button class="button button-ghost small" id="reanalyzeImageButton" type="button">
+                    Rianalizza OCR
+                  </button>
+                </div>
+                <div id="imageInsights" class="recommendations"></div>
+                <div class="checklist-block">
+                  <div class="panel-heading compact">
+                    <div>
+                      <p class="eyebrow">EXIF</p>
+                      <h3>Metadati immagine</h3>
+                    </div>
+                    <span class="status-pill" id="exifStatus">Nessun EXIF</span>
+                  </div>
+                  <div id="imageExifCards" class="saved-cases"></div>
+                </div>
+                <div class="checklist-block">
+                  <div class="panel-heading compact">
+                    <div>
+                      <p class="eyebrow">OCR</p>
+                      <h3>Testo estratto</h3>
+                    </div>
+                    <span class="status-pill" id="ocrStatus">OCR inattivo</span>
+                  </div>
+                  <div id="imageOcrSummary" class="saved-cases"></div>
+                  <div id="imageOcrLines" class="saved-cases"></div>
+                </div>
+                <div class="checklist-block">
+                  <div class="panel-heading compact">
+                    <div>
+                      <p class="eyebrow">Checklist</p>
+                      <h3>Segnali da verificare</h3>
+                    </div>
+                  </div>
+                  <div id="imageChecklist" class="checklist"></div>
+                </div>
+                <div class="checklist-block">
+                  <div class="panel-heading compact">
+                    <div>
+                      <p class="eyebrow">Geo Intelligence</p>
+                      <h3>Mappe, GPS e contesto</h3>
+                    </div>
+                    <div class="status-cluster">
+                      <span class="status-pill" id="geoStatus">Geo assente</span>
+                      <span class="status-pill" id="geoQueryCount">0 query</span>
+                    </div>
+                  </div>
+                  <div id="geoInsights" class="saved-cases"></div>
+                  <div id="geoSearches" class="query-packs"></div>
+                </div>
+              </article>
+            </section>
+          </section>
+
+          <section id="reportsView" class="view-panel">
+            <section class="insight-grid">
+              <article class="panel intel-panel">
+                <div class="panel-heading">
+                  <div>
+                    <p class="eyebrow">Report Center</p>
+                    <h3>Esportazioni e sintesi</h3>
+                  </div>
+                  <span class="status-pill">PDF / JSON / Markdown</span>
+                </div>
+                <div id="reportSummary" class="recommendations"></div>
+              </article>
+
+              <article class="panel intel-panel">
+                <div class="panel-heading">
+                  <div>
+                    <p class="eyebrow">Report Preview</p>
+                    <h3>Categorie incluse</h3>
+                  </div>
+                  <span class="status-pill" id="reportCategoryCount">0 sezioni</span>
+                </div>
+                <div id="reportCategories" class="saved-cases"></div>
+              </article>
+
+              <article class="panel intel-panel">
+                <div class="panel-heading">
+                  <div>
+                    <p class="eyebrow">Evidence Board</p>
+                    <h3>Evidenze raccolte</h3>
+                  </div>
+                  <span class="status-pill" id="evidenceCount">0 evidenze</span>
+                </div>
+                <form id="evidenceForm" class="intel-form compact-form">
+                  <label>
+                    Titolo evidenza
+                    <input id="evidenceTitle" name="title" type="text" placeholder="Profilo Instagram compatibile" required />
+                  </label>
+                  <div class="field-grid">
+                    <label>
+                      Tipo
+                      <select id="evidenceType" name="type">
+                        <option value="web">Web</option>
+                        <option value="social">Social</option>
+                        <option value="image">Image</option>
+                        <option value="document">Document</option>
+                        <option value="note">Note</option>
+                      </select>
+                    </label>
+                    <label>
+                      Stato
+                      <select id="evidenceStatus" name="status">
+                        <option value="to-verify">Da verificare</option>
+                        <option value="partial">Parziale</option>
+                        <option value="validated">Validata</option>
+                        <option value="discarded">Scartata</option>
+                      </select>
+                    </label>
+                  </div>
+                  <div class="field-grid">
+                    <label>
+                      Confidenza
+                      <select id="evidenceConfidence" name="confidence">
+                        <option value="low">Bassa</option>
+                        <option value="medium" selected>Media</option>
+                        <option value="high">Alta</option>
+                      </select>
+                    </label>
+ 
